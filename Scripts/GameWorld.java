@@ -24,7 +24,7 @@ UIButton startBtn;
 UIRect resultsRect;
 UITextView resultsText;
 UIButton retryBtn;
-WorldFile retryWorld, introWorld;
+WorldFile retryWorld;
 
 private float fps;
 UITextView fpsText;
@@ -93,7 +93,7 @@ void settings() {
     fps = 1 / Math.bySecond();
     fpsText.setText("" + (int) fps);
     
-    if (fps < 16) {
+    if (fps < 20) {
         Toast.showText("Oops! Your performance will be low and the game will crash. :(", 0);
         GameController.quit();
     }
@@ -102,7 +102,7 @@ void settings() {
         settingsMenuLayout.setSpacing((int) Math.lerp(settingsMenuLayout.getSpacing(), 20, 25));
         if (settingsReset.isDown()) {
             SaveGame.deleteAll();
-            WorldController.loadWorld(introWorld);
+            GameController.quit();
         }
     } else {
         settingsMenuLayout.setSpacing((int) Math.lerp(settingsMenuLayout.getSpacing(), -140, 25));
